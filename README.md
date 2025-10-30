@@ -1,3 +1,4 @@
+![Batuhan Karakuş Banner](banner.png)
 <h1 align="center">Hi 👋, I'm Batuhan Karakus</h1>
 <h3 align="center">A passionate Computer Engineering| AI & Full Stack Developer</h3>
 
@@ -7,11 +8,9 @@
 
 - 🤝 I’m looking for help with **Internship opportunities in Game Development**
 
-- 👨‍💻 All of my projects are available at [https://github.com/karakushbatu](https://github.com/karakushbatu)
-
 - 💬 Ask me about **AI/Deep Learning (TensorFlow, OpenCV), Embedded Systems and Backend Microservices**
 
-- 📫 How to reach me **batukarakush@gmail.com**
+- 📫 How to reach me **batuhan.karakus.ceng@gmail.com**
 
 - 📄 Know about my experiences [https://github.com/karakushbatu/batuhan-karakus-cv](https://github.com/karakushbatu/batuhan-karakus-cv)
 
