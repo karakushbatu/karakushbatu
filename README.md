@@ -1,4 +1,4 @@
-![Batuhan Karakuş Banner](banner.jpeg)
+![Batuhan Karakuş Banner](banner1.jpeg)
 <h1 align="center">Hi 👋, I'm Batuhan Karakus</h1>
 <h3 align="center">A passionate Computer Engineering| AI & Full Stack Developer</h3>
 
