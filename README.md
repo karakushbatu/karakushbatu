@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="newbanner.png" alt="Batuhan Karakuş" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0a0f1f,50:0f2c5c,100:1f6feb&text=Batuhan%20Karakus&fontColor=ffffff&fontAlignY=38&desc=Computer%20Engineer%20%C2%B7%20AI%20%26%20Real-Time%20Systems&descAlignY=58&animation=fadeIn" alt="Batuhan Karakus hero" width="100%" />
 </div>
 
 <h1 align="center">Hi, I'm Batuhan Karakuş 👋</h1>
