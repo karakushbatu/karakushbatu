@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-serif: var(--font-soria);
+  --font-sans: var(--font-vercetti);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+* {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none;
+}
+
+body {
+  overscroll-behavior: none;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --scrollbarColor: #FFF;
+  --scrollbarBackground: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbarBackground);
+}
+::-webkit-scrollbar-thumb {
+  border-bottom: 100vh solid var(--scrollbarColor);
+}
+
+/* Work timeline info panel */
+.timeline-panel {
+  position: fixed;
+  top: 50%;
+  right: 3.5vw;
+  transform: translateY(-50%);
+  width: min(420px, 82vw);
+  z-index: 20;
+  pointer-events: none;
+  text-align: right;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.timeline-panel.is-visible {
+  opacity: 1;
+}
+.timeline-panel__inner {
+  display: inline-block;
+  padding: 1.4rem 1.6rem 1.4rem 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(185, 198, 214, 0.12) 0%,
+    rgba(10, 18, 30, 0.28) 55%,
+    rgba(5, 10, 18, 0.08) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  animation: timelinePanelIn 0.55s ease both;
+}
+.timeline-panel__year {
+  font-family: var(--font-vercetti), sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  opacity: 0.65;
+  margin-bottom: 0.55rem;
+}
+.timeline-panel__title {
+  font-family: var(--font-soria), serif;
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+}
+.timeline-panel__role {
+  font-family: var(--font-vercetti), sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  margin-top: 0.5rem;
+}
+.timeline-panel__desc {
+  font-family: var(--font-vercetti), sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-top: 1.1rem;
+}
+.timeline-panel__tech {
+  font-family: var(--font-vercetti), sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-top: 1.1rem;
+}
+.timeline-panel__ach {
+  font-family: var(--font-vercetti), sans-serif;
+  font-size: 0.86rem;
+  color: #d6e4ad;
+  margin-top: 0.4rem;
+}
+@keyframes timelinePanelIn {
+  from {
+    opacity: 0;
+    transform: translateX(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.close {
+  position: absolute;
+  left: 32px;
+  top: 32px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .close {
+    margin-left: -24px;
+    margin-top: -16px;
+  }
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  left: 2rem;
+  content: ' ';
+  height: 48px;
+  width: 2px;
+  background-color: #0a0a0a;
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after {
+  transform: rotate(-45deg);
+}

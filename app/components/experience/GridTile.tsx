@@ -1,0 +1,211 @@
+import { Edges, MeshPortalMaterial, Text, TextProps, useScroll } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
+import { usePortalStore } from '@stores';
+import gsap from "gsap";
+import { useEffect, useRef } from 'react';
+import { isMobile } from 'react-device-detect';
+import * as THREE from 'three';
+
+interface GridTileProps {
+  id: string;
+  title: string;
+  textAlign: TextProps['textAlign'];
+  children: React.ReactNode;
+  color: string;
+  position: THREE.Vector3;
+  size?: number;
+}
+
+// TODO: Rename this
+const GridTile = (props: GridTileProps) => {
+  const titleRef = useRef<THREE.Group>(null);
+  const gridRef = useRef<THREE.Group>(null);
+  const hoverBoxRef = useRef<THREE.Mesh>(null);
+  const portalRef = useRef(null);
+  const { title, textAlign, children, color, position, id, size = 4 } = props;
+  const { camera } = useThree();
+  const setActivePortal = usePortalStore((state) => state.setActivePortal);
+  const setTransitioning = usePortalStore((state) => state.setTransitioning);
+  const isActive = usePortalStore((state) => state.activePortalId === id);
+  const activePortalId = usePortalStore((state) => state.activePortalId);
+  const data = useScroll();
+
+  useEffect(() => {
+    // On mobile, render a small centered title beneath each tile.
+    if (isMobile && titleRef.current) {
+      gsap.to(titleRef.current, {
+        fontSize: 0.18,
+        maxWidth: size,
+        color: '#FFF',
+        letterSpacing: 0.2,
+      });
+      gsap.to(titleRef.current.position, {
+        x: 0,
+        y: -size / 2 + 0.25,
+        duration: 0.5,
+      });
+    }
+  }, []);
+
+  useFrame(() => {
+    const d = data.range(0.95, 0.05);
+    if (isMobile && titleRef.current) {
+      /* eslint-disable  @typescript-eslint/no-explicit-any */
+      (titleRef.current as any).fillOpacity = d;
+    }
+  });
+
+  const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      exitPortal(true);
+    }
+  };
+
+  const portalInto = (e: React.MouseEvent) => {
+    if (isActive || activePortalId) return;
+    e.stopPropagation();
+    setActivePortal(id);
+    document.body.style.cursor = 'auto';
+    const div = document.createElement('div');
+
+    div.className = 'fixed close';
+    div.style.transform = 'rotateX(90deg)';
+    div.onclick = () => exitPortal(true);
+
+    if (!document.querySelector('.close')) {
+      document.body.appendChild(div);
+
+      gsap.fromTo(div, {
+        scale: 0,
+        rotate: '-180deg',
+      },{
+        opacity: 1,
+        zIndex: 10,
+        transform: 'rotateX(0deg)',
+        scale: 1,
+        duration: 1,
+      })
+    }
+    document.body.addEventListener('keydown', handleEscape);
+    gsap.to(portalRef.current, {
+      blend: 1,
+      duration: 0.55,
+      ease: "power2.inOut",
+    });
+  };
+
+  const exitPortal = (force = false) => {
+    if (!force && !activePortalId) return;
+    setActivePortal(null)
+
+    // Lock out ScrollWrapper, kill any in-flight portal tweens, then glide the
+    // camera back to the overview in one clean motion (no fighting = no glitch).
+    setTransitioning(true);
+    gsap.killTweensOf(camera.position);
+    gsap.killTweensOf(camera.rotation);
+
+    gsap.to(camera.position, {
+      x: 0,
+      y: -37,
+      z: 13,
+      duration: 0.9,
+      ease: "power2.inOut",
+    });
+
+    gsap.to(camera.rotation, {
+      x: -Math.PI / 2,
+      y: 0,
+      z: 0,
+      duration: 0.9,
+      ease: "power2.inOut",
+      onComplete: () => setTransitioning(false),
+    });
+
+    gsap.to(portalRef.current, {
+      blend: 0,
+      duration: 0.7,
+      ease: "power2.inOut",
+    });
+
+    // Remove the div from the dom
+    gsap.to(document.querySelector('.close'), {
+      scale: 0,
+      duration: 0.5,
+      onComplete: () => {
+        document.querySelectorAll('.close').forEach((el) => {
+          el.remove();
+        });
+      }
+    })
+    document.body.removeEventListener('keydown', handleEscape);
+  }
+
+  const fontProps: Partial<TextProps> = {
+    font: "./soria-font.ttf",
+    maxWidth: size * 1.6,
+    anchorX: 'center',
+    anchorY: 'bottom',
+    fontSize: 0.28,
+    color: 'white',
+    textAlign: textAlign,
+    fillOpacity: 0,
+  };
+
+  const onPointerOver = () => {
+    if (isActive || isMobile) return;
+    document.body.style.cursor = 'pointer';
+    gsap.to(titleRef.current, {
+      fillOpacity: 1
+    });
+    if (gridRef.current && hoverBoxRef.current) {
+      gsap.to(gridRef.current.position, { z: 0.5, duration: 0.4});
+      gsap.to(hoverBoxRef.current.scale, { x: 1, y: 1, z: 1, duration: 0.4 });
+    }
+  };
+
+  const onPointerOut = () => {
+    if (isMobile) return;
+    document.body.style.cursor = 'auto';
+    gsap.to(titleRef.current, {
+      fillOpacity: 0
+    });
+    if (gridRef.current && hoverBoxRef.current) {
+      gsap.to(gridRef.current.position, { z: 0, duration: 0.4});
+      gsap.to(hoverBoxRef.current.scale, { x: 0, y: 0, z: 0, duration: 0.4 });
+    }
+  };
+
+  const getGeometry = () => {
+    return <planeGeometry args={[size, size, 1]} />
+  };
+
+  return (
+    <mesh ref={gridRef}
+      position={position}
+      onClick={portalInto}
+      onPointerOver={onPointerOver}
+      onPointerOut={onPointerOut}>
+      { getGeometry() }
+      <group>
+        <mesh position={[0, 0, -0.01]} ref={hoverBoxRef} scale={[0, 0, 0]}>
+          <boxGeometry args={[size, size, 0.5]}/>
+          <meshPhysicalMaterial
+            color="#444"
+            transparent={true}
+            opacity={0.3}
+          />
+          <Edges color="white" lineWidth={3}/>
+        </mesh>
+        <Text position={[0, -size / 2 + 0.2, 0.4]} {...fontProps} ref={titleRef}>
+          {title}
+        </Text>
+      </group>
+      <MeshPortalMaterial ref={portalRef} blend={0} resolution={512} blur={0}>
+        <color attach="background" args={[color]} />
+        {children}
+      </MeshPortalMaterial>
+    </mesh>
+  );
+}
+
+export default GridTile;
