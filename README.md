@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0a0f1f,50:0f2c5c,100:1f6feb&text=Batuhan%20Karakus&fontColor=ffffff&fontAlignY=38&desc=Computer%20Engineer%20%C2%B7%20AI%20%26%20Real-Time%20Systems&descAlignY=58&animation=fadeIn" alt="Batuhan Karakus hero" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&amp;height=300&amp;color=0:030712,50:1e1b4b,100:7c3aed&amp;text=Batuhan%20Karaku%C5%9F&amp;fontColor=f8fafc&amp;fontSize=50&amp;fontAlignY=30&amp;desc=Engineering%20intelligent%20systems%20for%20tomorrow&amp;descAlignY=55&amp;descSize=17&amp;animation=fadeIn&amp;stroke=22d3ee" alt="Batuhan Karakuş — Engineering intelligent systems for tomorrow" width="100%" />
 </div>
 
 <h1 align="center">Hi, I'm Batuhan Karakuş 👋</h1>
