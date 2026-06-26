@@ -1,4 +1,5 @@
 import type { PortalId } from "./portalConfig";
+import { MODEL_ACTIVE, MODEL_PREVIEW } from "./techstack/techStackCamera";
 
 /** 3D transform for framing a model inside a portal tile (door preview). */
 export interface PortalModelLayout {
@@ -24,10 +25,10 @@ export const PORTAL_LAYOUTS: Record<
     preview: { position: [0.4, -0.4, 0.6], rotation: [0, 1.1, 0], scale: 1 },
     active: { position: [0, -1, -1], rotation: [0, Math.PI / 6, 0], scale: 1.5 },
   },
-  // Portal 3 — sand wanderer. Active framing matches the lookAt in techstack/index.tsx.
+  // Portal 3 — sand dune wanderer (calibration: techstack/techStackCamera.ts)
   techstack: {
-    preview: { position: [0, -0.35, 0.4], rotation: [0, Math.PI, 0], scale: 0.4 },
-    active: { position: [0, -0.35, 0], rotation: [0, 0, 0], scale: 1.2 },
+    preview: MODEL_PREVIEW,
+    active: MODEL_ACTIVE,
   },
 };
 
@@ -35,5 +36,5 @@ export const PORTAL_LAYOUTS: Record<
 export const PORTAL_CAM_OFFSETS: Record<PortalId, { z: number; y?: number }> = {
   work: { z: 0 },
   projects: { z: -2.2 },
-  techstack: { z: 0 },
+  techstack: { z: -2.2 },
 };

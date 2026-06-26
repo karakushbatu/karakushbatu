@@ -99,21 +99,26 @@ const GridTile = (props: GridTileProps) => {
     setActivePortal(null)
 
     // Lock out ScrollWrapper, kill any in-flight portal tweens, then glide the
-    // camera back to the overview in one clean motion (no fighting = no glitch).
+    // camera back to the EXACT overview pose for the current scroll position so
+    // ScrollWrapper picks up seamlessly (no jump/settle on hand-off).
     setTransitioning(true);
     gsap.killTweensOf(camera.position);
     gsap.killTweensOf(camera.rotation);
 
+    const a = data.range(0, 0.3);
+    const b = data.range(0.3, 0.5);
+    const d = data.range(0.85, 0.18);
+
     gsap.to(camera.position, {
       x: 0,
-      y: -37,
-      z: 13,
+      y: -37 * b,
+      z: 5 + 10 * d,
       duration: 0.9,
       ease: "power2.inOut",
     });
 
     gsap.to(camera.rotation, {
-      x: -Math.PI / 2,
+      x: -0.5 * Math.PI * a,
       y: 0,
       z: 0,
       duration: 0.9,

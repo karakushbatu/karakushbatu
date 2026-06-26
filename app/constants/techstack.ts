@@ -1,11 +1,30 @@
 import { TechCategory } from "../types";
 
+// Honest, comfort/interest-based grouping — not claiming mastery everywhere.
 export const TECH_STACK: TechCategory[] = [
-  { name: 'Languages', items: ['Python', 'C / C++', 'TypeScript', 'Java', 'ARM Assembly', 'SQL'] },
-  { name: 'AI / ML', items: ['PyTorch', 'scikit-learn', 'LangChain', 'FAISS', 'Whisper', 'HuggingFace'] },
-  { name: 'Frontend', items: ['React', 'Next.js', 'Tailwind CSS', 'Three.js / R3F', 'GSAP'] },
-  { name: 'Backend', items: ['Node.js', 'Supabase', 'PostgreSQL', 'REST APIs', 'GraphQL'] },
-  { name: 'DevOps', items: ['Docker', 'GitHub Actions', 'GitLab CI/CD', 'Linux', 'Nginx'] },
-  { name: 'Embedded', items: ['FreeRTOS', 'ARINC 653', 'STM32', 'UART / SPI / I2C'] },
-  { name: 'Tools', items: ['Git', 'Blender', 'Figma', 'LaTeX', 'Jira'] },
+  {
+    name: 'Day to day',
+    items: ['Python', 'TypeScript', 'JavaScript', 'React', 'Next.js'],
+    detail: 'My everyday web stack — UI to API.',
+  },
+  {
+    name: 'Comfortable with',
+    items: ['C / C++', 'Java', 'SQL', 'Node.js', 'PostgreSQL'],
+    detail: 'Languages & databases I have shipped with.',
+  },
+  {
+    name: 'AI & ML',
+    items: ['PyTorch', 'scikit-learn', 'LangChain', 'RAG', 'Whisper', 'HuggingFace'],
+    detail: 'Where my curiosity lives — LLMs, RAG, research.',
+  },
+  {
+    name: 'Systems & embedded',
+    items: ['Linux', 'FreeRTOS', 'ARINC 653', 'STM32', 'Bash'],
+    detail: 'Low-level — avionics C & RTOS (TUSAŞ SKY).',
+  },
+  {
+    name: 'Tooling & flow',
+    items: ['Git', 'Docker', 'GitHub Actions', 'Figma', 'LaTeX'],
+    detail: 'Keeping things tidy and shipping.',
+  },
 ];

@@ -88,7 +88,7 @@ const Experience = () => {
           </GridTile>
           <GridTile title='TECH STACK'
             id="techstack"
-            color='#c2cedd'
+            color='#3d2e1f'
             textAlign='left'
             size={TILE_SIZE}
             position={new THREE.Vector3(TILE_X.techstack, TILE_Y, 0)}>
