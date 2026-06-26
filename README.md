@@ -14,20 +14,17 @@
 </p>
 
 <p align="center">
-  <a href="https://karakushbatu.github.io/karakushbatu/">
-    <img src="https://img.shields.io/badge/🌐_Live_3D_Portfolio-0690d4?style=for-the-badge&logoColor=white" alt="Live Portfolio" />
-  </a>
-  <a href="https://github.com/karakushbatu/karakushbatu/actions/workflows/nextjs.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/karakushbatu/karakushbatu/nextjs.yml?branch=main&label=deploy&style=flat-square" alt="GitHub Pages deploy" />
+  <a href="https://karakushbatu.vercel.app/">
+    <img src="https://img.shields.io/badge/🌐_Live_3D_Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Portfolio on Vercel" />
   </a>
 </p>
 
 <p align="center">
-  <a href="https://karakushbatu.github.io/karakushbatu/"><b>karakushbatu.github.io/karakushbatu</b></a>
+  <a href="https://karakushbatu.vercel.app/"><b>karakushbatu.vercel.app</b></a>
 </p>
 
 <p align="center">
-  <a href="https://karakushbatu.github.io/karakushbatu/">
+  <a href="https://karakushbatu.vercel.app/">
     <img src="https://img.shields.io/badge/🌐_Explore_my_3D_Portfolio-0690d4?style=for-the-badge&logoColor=white" alt="Portfolio" />
   </a>
   <a href="https://www.linkedin.com/in/batuhan-karakus/">
@@ -143,14 +140,14 @@ I'm a computer engineer who likes building things that are *hard to get right* �
 
 ### ✨ What's New in This Repo
 
-- 🪐 **Live 3D portfolio** — scroll-driven single-page experience at [karakushbatu.github.io/karakushbatu](https://karakushbatu.github.io/karakushbatu/)
+- 🪐 **Live 3D portfolio** — scroll-driven single-page experience at [karakushbatu.vercel.app](https://karakushbatu.vercel.app/)
 - 🧩 **Modular portal architecture** — Work, Projects & Tech Stack with per-portal layouts and camera calibration
 - 🌵 **Tech Stack portal** — sand-dune wanderer model, scroll-reveal glass cards & detail panels
-- 📱 **Mobile-first** — touch controls, responsive portal tiles, static export for GitHub Pages
-- 🚀 **CI/CD** — automated build & deploy via GitHub Actions (`nextjs.yml`)
+- 📱 **Mobile-first** — touch controls, responsive portal tiles, static export on Vercel
+- 🚀 **Deploy** — Vercel (GitHub integration, auto-deploy on push to `main`)
 
 ---
 
 <p align="center">
-  <a href="https://karakushbatu.github.io/karakushbatu/"><b>🪐 Wander through my 3D portfolio →</b></a>
+  <a href="https://karakushbatu.vercel.app/"><b>🪐 Wander through my 3D portfolio →</b></a>
 </p>
